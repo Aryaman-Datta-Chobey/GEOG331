@@ -12,4 +12,13 @@ char_vector <-c("a","bc","def","hijk","lmnop")
 num_vector<-c(1,-2,44,3.3,0)
 int_vector<- c(1,-2,3,4,5)
 factor_vector<- factor(char_vector)
-
+#Question 3
+help(hist)
+datW$siteN <- as.numeric(datW$NAME)
+hist(datW$siteN,
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[1]),
+     xlab = "Average daily temperature (degrees C)", 
+     ylab="Relative frequency",
+     col="grey50",
+     border="white")
