@@ -13,12 +13,27 @@ num_vector<-c(1,-2,44,3.3,0)
 int_vector<- c(1,-2,3,4,5)
 factor_vector<- factor(char_vector)
 #Question 3
-help(hist)
 datW$siteN <- as.numeric(datW$NAME)
-hist(datW$siteN,
+datW$TAVE <- datW$TMIN + ((datW$TMAX-datW$TMIN)/2)
+hist(datW$TAVE[datW$siteN==1],
      freq=FALSE, 
      main = paste(levels(datW$NAME)[1]),
      xlab = "Average daily temperature (degrees C)", 
      ylab="Relative frequency",
      col="grey50",
      border="white")
+hist(datW$TAVE[datW$siteN==2],
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[1]),
+     xlab = "Average daily temperature (degrees C)", 
+     ylab="Relative frequency",
+     col="grey50",
+     border="white")
+help(hist)
+help(paste)
+
+print(datW$TAVE)
+print(datW$NAME)
+print(datW$TAVE[datW$siteN])
+print(datW$TAVE[datW$siteN==1])
+print(datW$TAVE[datW$siteN==2])
