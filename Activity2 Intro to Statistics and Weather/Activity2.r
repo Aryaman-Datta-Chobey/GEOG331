@@ -15,6 +15,7 @@ factor_vector<- factor(char_vector)
 #Question 3
 datW$siteN <- as.numeric(datW$NAME)
 datW$TAVE <- datW$TMIN + ((datW$TMAX-datW$TMIN)/2)
+#Histogram for Aberdeen
 hist(datW$TAVE[datW$siteN==1],
      freq=FALSE, 
      main = paste(levels(datW$NAME)[1]),
@@ -22,17 +23,48 @@ hist(datW$TAVE[datW$siteN==1],
      ylab="Relative frequency",
      col="grey50",
      border="white")
-hist(datW$TAVE[datW$siteN==2],
-     freq=FALSE, 
-     main = paste(levels(datW$NAME)[1]),
-     xlab = "Average daily temperature (degrees C)", 
-     ylab="Relative frequency",
-     col="grey50",
-     border="white")
+abline(v = mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE) + sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE), 
+       col = "tomato3", 
+       lty = 3,
+       lwd = 3)
+abline(v = mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE) - sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE), 
+       col = "tomato3", 
+       lty = 3,
+       lwd = 3)
 help(hist)
 help(paste)
+#Question 4
+#Histogram for Livemore
+hist(datW$TAVE[datW$siteN==2],
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[2]),
+     xlab = "Average daily temperature (degrees C)", 
+     ylab="Relative frequency",
+     col="purple",
+     border="white")
+abline(v = mean(datW$TAVE[datW$siteN == 2],na.rm=TRUE) + sd(datW$TAVE[datW$siteN == 2],na.rm=TRUE), 
+       col = "tomato3", 
+       lty = 3,
+       lwd = 3)
+#Histogram for Mandan Experiment Station
+hist(datW$TAVE[datW$siteN==3],
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[3]),
+     xlab = "Average daily temperature (degrees C)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+#Histogram for Mormon flat
+hist(datW$TAVE[datW$siteN==4],
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[4]),
+     xlab = "Average daily temperature (degrees C)", 
+     ylab="Relative frequency",
+     col="orange",
+     border="white")
 
-print(datW$TAVE)
+
+
 print(datW$NAME)
 print(datW$TAVE[datW$siteN])
 print(datW$TAVE[datW$siteN==1])
