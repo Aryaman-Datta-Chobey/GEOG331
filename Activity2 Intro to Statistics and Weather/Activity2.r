@@ -46,7 +46,7 @@ SiteSummary<-function(SiteNumber, graphcol,linecol){
   #intialize variables
   datW$siteN <- as.numeric(datW$NAME)
   datW$TAVE <- datW$TMIN + ((datW$TMAX-datW$TMIN)/2)
-  hist(datW$TAVE[datW$siteN==SiteNumber],
+  h1<-hist(datW$TAVE[datW$siteN==SiteNumber],
        freq=FALSE,  
        main = paste(levels(datW$NAME)[SiteNumber]),
        xlab = "Average daily temperature (degrees C)", 
@@ -68,39 +68,28 @@ SiteSummary<-function(SiteNumber, graphcol,linecol){
          col = linecol, 
          lty = 3,
          lwd = 3)
+  #Normal distrubtion dotted graph for q5
+  x.plot <- seq(-10,30, length.out = 100)
+  y.plot <-  dnorm(seq(-10,30, length.out = 100),
+                   mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE),
+                   sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE))
+  y.scaled <- (max(h1$density)/max(y.plot)) * y.plot
+  points(x.plot,
+         y.scaled, 
+         type = "l", 
+         col = "royalblue3",
+         lwd = 4, 
+         lty = 2)
 }
-#Histogram for Livemore
-hist(datW$TAVE[datW$siteN==2],
-     freq=FALSE, 
-     main = paste(levels(datW$NAME)[2]),
-     xlab = "Average daily temperature (degrees C)", 
-     ylab="Relative frequency",
-     col="purple",
-     border="white")
-abline(v = mean(datW$TAVE[datW$siteN == 2],na.rm=TRUE) + sd(datW$TAVE[datW$siteN == 2],na.rm=TRUE), 
-       col = "tomato3", 
-       lty = 3,
-       lwd = 3)
-#Histogram for Mandan Experiment Station
-hist(datW$TAVE[datW$siteN==3],
-     freq=FALSE, 
-     main = paste(levels(datW$NAME)[3]),
-     xlab = "Average daily temperature (degrees C)", 
-     ylab="Relative frequency",
-     col="green",
-     border="white")
-#Histogram for Mormon flat
-hist(datW$TAVE[datW$siteN==4],
-     freq=FALSE, 
-     main = paste(levels(datW$NAME)[4]),
-     xlab = "Average daily temperature (degrees C)", 
-     ylab="Relative frequency",
-     col="orange",
-     border="white")
+par(mfrow=c(2,2))
+SiteSummary(1,"grey50","tomato3") #Histogram for Aberdeen
+SiteSummary(2,"purple","tomato3") #Histogram for Livemore
+SiteSummary(3,"green","tomato3") #Histogram for Mandan Experiment Station
+SiteSummary(4,"yellow","tomato3") #Histogram for Mormon flat
 
 
+qnorm(0.95,
+      mean(4+datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+help(qnorm)
 
-print(datW$NAME)
-print(datW$TAVE[datW$siteN])
-print(datW$TAVE[datW$siteN==1])
-print(datW$TAVE[datW$siteN==2])
