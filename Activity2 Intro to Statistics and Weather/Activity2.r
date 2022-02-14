@@ -82,6 +82,7 @@ SiteSummary_AvgTemp<-function(SiteNumber, graphcol,linecol){
          lwd = 4, 
          lty = 2)
 }
+#generating 4 histograms in one window
 par(mfrow=c(2,2))
 SiteSummary_AvgTemp(1,"grey50","tomato3") #Histogram for Aberdeen
 SiteSummary_AvgTemp(2,"purple","tomato3") #Histogram for Livemore
