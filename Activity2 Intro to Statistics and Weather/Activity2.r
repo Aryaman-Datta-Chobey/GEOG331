@@ -69,8 +69,8 @@ SiteSummary<-function(SiteNumber, graphcol,linecol){
          lty = 3,
          lwd = 3)
   #Normal distrubtion dotted graph for q5
-  x.plot <- seq(-10,30, length.out = 100)
-  y.plot <-  dnorm(seq(-10,30, length.out = 100),
+  x.plot <- seq(mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE) - 3*sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE),mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE) + 3*sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE), length.out = 100)
+  y.plot <-  dnorm(seq(mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE) - 3*sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE),mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE) + 3*sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE), length.out = 100),
                    mean(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE),
                    sd(datW$TAVE[datW$siteN == SiteNumber],na.rm=TRUE))
   y.scaled <- (max(h1$density)/max(y.plot)) * y.plot
