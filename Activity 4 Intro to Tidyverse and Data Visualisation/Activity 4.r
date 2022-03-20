@@ -61,7 +61,7 @@ GGplot = ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) +
 GGplot
 
 #3b. make a scatter plot with ggplot and get rid of  busy grid lines
-#theme_classic() removes gridlines
+# blank arugment for theme_classic() removes gridlines
 GGClassicPlot = ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
   geom_point() + theme_classic()
 GGClassicPlot
